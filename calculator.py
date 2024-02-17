@@ -1,28 +1,47 @@
-from math import sqrt, pi
+from math import sqrt
+
 print('SIMPLE CALCULATOR')
+
 while True:
-    status = input("Type 'start' or 'end': ")
-    if status == "Start" or "start":
+    ans = 0
+    input_status = input("Type 'start' or 'end': ")
+    
+    if input_status.lower() == "start":
         operator = input('Choose operator (+, -, x, /, sqrt): ')
+        
         try:
-            num_1 = float(input('num_1 is: '))
-            num_2 = float(input('num_2 is: '))
-        except:
+            num_1 = float(input('The first number is: '))
+            num_2 = float(input('The second number is: '))
+        except ValueError:
             print('Invalid number!')
+            continue
+        
         try:
             if operator == '+':
-                print("The end result is: ", num_1+num_2)
-            if operator == '-':
-                print("The end result is: ", num_1-num_2)
-            if operator == 'x' or '*':
-                print("The end result is: ", num_1*num_2)
-            if operator == '/':
-                print("The end result is: ", num_1/num_2)
-            if operator == 'sqrt':
-                print("The end result is: ", sqrt(num_1))
-        except:
-            print('Invalid operator!')
-    elif status == "End" or "end":
+                ans = num_1 + num_2
+                print("Your answer is: ", ans)
+            elif operator == '-':
+                ans = num_1 - num_2
+                print("Your answer is: ", ans)
+            elif operator == 'x' or operator == '*':
+                ans = num_1 * num_2
+                print("Your answer is: ", ans)
+            elif operator == '/':
+                ans = num_1 / num_2
+                print("Your answer is: ", ans)
+            elif operator == 'sqrt':
+                ans = sqrt(num_1)
+                print("Your answer is: ", ans)
+            else:
+                print('Invalid operator!')
+                continue
+        
+        except ZeroDivisionError:
+            print("Error: Division by zero!")
+
+    elif input_status.lower() == "end":
         break
+
     else:
         print("Invalid choice! Choose either 'Start' or 'End'")
+
